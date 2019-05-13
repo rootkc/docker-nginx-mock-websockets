@@ -1,0 +1,16 @@
+{
+  "name": "mock-websocket-issue",
+  "version": "0.0.1",
+  "engines": {
+    "node": "8.2.1"
+  },
+  "description": "Minimal reproduction of mock websocket issue",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "author": "Kenneth Christensen",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "ws": "^7.0.0"
+  }
+}
