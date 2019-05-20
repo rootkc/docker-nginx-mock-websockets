@@ -4,10 +4,13 @@ WORKDIR /usr/app
 
 COPY package*.json ./
 
-RUN npm install
+RUN apk add --no-cache \
+  iptables \
+  && npm install
 
 COPY . .
 
 RUN ["chmod", "+x", "/usr/app/wait-for"]
+RUN ["chmod", "+x", "/usr/app/iptables"]
 
 CMD ["npm", "run", "start"]

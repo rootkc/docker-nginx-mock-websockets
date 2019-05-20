@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "settings iptables.."
+iptables -t nat -A OUTPUT -p tcp --dport 80 -j DNAT --to-destination 10.6.0.6:8080

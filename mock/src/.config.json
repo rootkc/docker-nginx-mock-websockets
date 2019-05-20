@@ -2,7 +2,7 @@
  "nodes": {
   "node-red": {
    "name": "node-red",
-   "version": "0.20.0",
+   "version": "0.20.5",
    "local": false,
    "nodes": {
     "inject": {
@@ -467,7 +467,7 @@
   },
   "node-red-node-sentiment": {
    "name": "node-red-node-sentiment",
-   "version": "0.1.1",
+   "version": "0.1.3",
    "local": false,
    "nodes": {
     "sentiment": {

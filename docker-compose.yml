@@ -2,21 +2,35 @@ version: "3.2"
 services:
   app:
     build: .
-    command: sh -c '/usr/app/wait-for mock:1880 -- npm run start'
+    command: sh -c '/usr/app/wait-for mock:1880 -- sh /usr/app/iptables && npm run start'
+    privileged: true
     depends_on:
       - mock
       - nginx
-    environment:
-      HTTP_PROXY: http://nginx:8080
+    networks:
+      proxynet:
   mock:
+    networks:
+      proxynet:
     build: ./mock
     ports:
       - "1880:1880"
     volumes:
       - ./mock/src:/data
   nginx:
+    ports:
+      - "8080:8080"
+    networks:
+      proxynet:
+        ipv4_address: 10.6.0.6
     depends_on:
       - mock
     image: nginx:1.16-alpine
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+networks:
+  proxynet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.6.0.0/16
